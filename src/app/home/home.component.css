@@ -1,0 +1,289 @@
+.home-page {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 10px;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 70px;
+}
+
+/* FLEX FOR GLOBAL USE  */
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* LANDING SECTION  */
+.landing-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    scroll-snap-align: center;
+    z-index: -1;
+}
+
+.landing-section .background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transform: translateZ(-7px) scale(2.1);
+    z-index: -1;
+}
+
+.landing-section .landing-section__welcome {
+    background-color: #b99d002c;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-2xl);
+    padding: 1.5rem 20px;
+    border: 1px solid #ffffff41;
+    border-radius: 10px;
+}
+
+.landing-section .landing-section__welcome h2 {
+    font-size: var(--size-2xl);
+}
+
+.landing-section .landing-section__welcome h1 {
+    font-size: var(--size-4xl);
+}
+
+.landing-section .landing-section__welcome p {
+    text-align: center;
+    font-size: var(--size-base);
+}
+
+/* ROOMS SECTION  */
+.room-section {
+    background-color: var(--clr-amber100);
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: var(--clr-dark);
+    border-radius: 10px; 
+    scroll-snap-align: start;
+}
+
+.room-section__greeting {
+    padding: var(--size-3xl) var(--size-lg);
+    flex-direction: column;
+    align-items: center;
+    gap: .8rem;
+}
+
+.room-section__greeting h1 {
+    font-size: var(--size-xl);
+}
+
+.room-section__greeting p {
+    font-size: var(--size-sm);
+}
+
+.room__title {
+    font-size: var(--size-xl);
+}
+
+.room__img-wrapper {
+    margin: 1rem 0;
+    position: relative;
+}
+
+.room__text {
+    margin-bottom: 2rem;
+}
+
+.room__subtitle {
+    display: none;
+}
+
+.room__desc {
+    margin-bottom: .5rem;
+}
+
+
+/* xs */
+@media (min-width: 475px) {
+    .landing-section .landing-section__welcome {
+        width: 400px;
+    }
+
+    /* ROOM SECTION */
+    .room-section__greeting h1 {
+        font-size: var(--size-2xl);
+    }
+
+    .room-section__greeting p {
+        font-size: var(--size-base);
+    }
+}
+
+/* sm */
+@media (min-width: 640px) {
+
+    /* ROOM SECTION */
+    .rooms__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            'img1 content1'
+            'content2 img2'
+            'img3 content3'
+            'content4 img4';
+        place-items: center;
+    }
+
+    .room__img1 {
+        grid-area: img1;
+    }
+
+    .room__img2 {
+        grid-area: img2;
+    }
+
+    .room__img3 {
+        grid-area: img3;
+    }
+
+    .room__img4 {
+        grid-area: img4;
+    }
+
+    .room__content1 {
+        grid-area: content1;
+    }
+
+    .room__content2 {
+        grid-area: content2;
+    }
+
+    .room__content3 {
+        grid-area: content3;
+    }
+
+    .room__content4 {
+        grid-area: content4;
+    }
+
+    .room__title {
+        display: none;
+    }
+
+    .room__subtitle {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .room__desc {
+        padding: 0 .5rem;
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+
+    /* ROOM SECTION */
+    .room-section__greeting {
+        padding: var(--size-4xl) var(--size-xl);
+    }
+
+    .room-section__greeting h1 {
+        font-size: var(--size-3xl);
+    }
+
+    .room-section__greeting p {
+        font-size: var(--size-lg);
+    }
+
+    .room__subtitle {
+        font-size: var(--size-xl);
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    .landing-section .landing-section__welcome h1 {
+        font-size: var(--size-5xl);
+    }
+
+    /* ROOM SECTION */
+    .room-section__greeting {
+        padding: var(--size-5xl) var(--size-2xl);
+    }
+
+    .room-section__greeting h1 {
+        font-size: var(--size-3xl);
+    }
+
+    .room-section__greeting p {
+        font-size: var(--size-lg);
+    }
+
+    .room__subtitle {
+        font-size: var(--size-xl);
+    }
+
+    .room__desc {
+        font-size: var(--size-lg);
+    }
+
+    .room__btn {
+        font-size: var(--size-lg);
+    }
+
+}
+
+/* xl */
+@media (min-width: 1280px) {
+
+    /* ROOM SECTION */
+    .rooms__container {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .room-section__greeting {
+        padding: var(--size-6xl) var(--size-3xl);
+    }
+
+    .room-section__greeting p {
+        font-size: var(--size-2xl);
+    }
+
+    .room__subtitle {
+        font-size: var(--size-2xl);
+    }
+
+
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+
+    /* ROOM SECTION */
+    .room__subtitle {
+        font-size: var(--size-3xl);
+    }
+
+    .room__desc {
+        font-size: var(--size-2xl);
+    }
+
+    .room__btn {
+        font-size: var(--size-2xl);
+    }
+
+}

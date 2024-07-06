@@ -1,0 +1,43 @@
+<!-- Nav goes here -->
+
+<!-- Facilities Section -->
+<section #carousel class="facil">
+    <!-- List -->
+    <div #listItem *ngIf="carouselItems.length" class="facil__list">
+      <!-- Loop the carousel cells -->
+      <div *ngFor="let item of carouselItems" class="facil__list-item">
+        <img class="item-img" [src]="item.imgPath" alt="{{ item.title }}" />
+        <div class="item-content">
+          <h1 class="item-content__title">{{ item.title }}</h1>
+          <p class="item-content__desc">{{ item.description}}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Thumbnails -->
+    <div #thumbnail *ngIf="thumbnails.length" class="thumbnail">
+      <div *ngFor="let item of thumbnails" class="thumb__item">
+        <img  [src]="item.imgPath" alt="{{ item.title }}" />
+        <div class="thumb__item-content">
+          <div class="thumb__title">{{ item.title }}</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Carousel Navigation Arrows -->
+    <div class="arrows flex">
+      <button #prev id="prev" class="btn flex">
+          <i class="bx bxs-chevron-left"></i>
+      </button>
+      <button #next id="next" class="btn flex">
+          <i class='bx bxs-chevron-right'></i>
+      </button>
+  </div>
+  
+    
+  
+  </section>
+  
+  <!-- Footer goes here -->
+  <app-footer></app-footer>
+  
