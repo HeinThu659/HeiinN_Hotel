@@ -1,109 +1,130 @@
 <div class="dummy-body flex">
-    <!-- INTRO TO ROOMS PAGE -->
-    <div class="headings container flex">
-      <div class="headings__title">
-        <h1>Experience Ember Glow: Your Haven Awaits</h1>
-      </div>
-      <div class="heading__subtitle">
-        <p>
-          Welcome to a realm of tranquility and elegance, where every room beckons
-          with promise and every moment is filled with warmth.
-        </p>
-      </div>
+  <!-- INTRO TO ROOMS PAGE -->
+  <div class="headings container flex">
+    <div class="headings__title">
+      <h1>Experience Ember Glow: Your Haven Awaits</h1>
     </div>
-  
-    <!-- FILTER (date, location, etc...) -->
-    <form class="filter-container container flex" action="" method="post">
-      <div class="filter-container__fields flex">
-        <!-- Location picker -->
-        <mat-form-field>
-          <mat-label>Select a location</mat-label>
-          <mat-select [(ngModel)]="selectedLocation" name="location">
-            <mat-option
-              *ngFor="let location of locations"
-              [value]="location.value"
-            >
-              {{ location.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-  
-        <!-- Date picker -->
-        <mat-form-field>
-          <mat-label>Start - End date</mat-label>
-          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-            <input matStartDate formControlName="start" placeholder="Check In" />
-            <input matEndDate formControlName="end" placeholder="Check Out" />
-          </mat-date-range-input>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-  
-          <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
-            >Invalid start date</mat-error
-          >
-          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
-            >Invalid end date</mat-error
-          >
-        </mat-form-field>
-  
-        <!-- Room type picker -->
-        <mat-form-field>
-          <mat-label>Select room type</mat-label>
-          <mat-select [(ngModel)]="selectedRoom" name="roomType">
-            <mat-option
-              *ngFor="let roomType of roomTypes"
-              [value]="roomType.value"
-            >
-              {{ roomType.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!-- FILTER BUTTON -->
-      <button class="filter-btn btn flex" type="submit">
-        <i class="bx bx-filter-alt"></i>
-        <span>Filter</span>
-      </button>
-    </form>
-  
-    <!-- BIG CARD THAT CONTAINS ALL THE ROOMS FOR EACH TYPE -->
-    <div class="rooms-container container flex">
-      <!-- LOOP EACH ROOM -->
-      <ng-container *ngFor="let i of fourTimes">
-        <div class="oneroom flex">
-          <div class="oneroom__image">
-            <img src="../../assets/images/rooms/Suite.webp" alt="" />
-          </div>
-          <div class="oneroom__info-container">
-            <div class="oneroom__info flex">
-              <div class="oneroom__linfo-type one-info flex">
-                <span>Type: </span><span>Suite</span>
-              </div>
-              <div class="oneroom__linfo-number one-info flex">
-                <span>RoomNo: </span><span>A01</span>
-              </div>
-              <div class="oneroom__linfo-location one-info flex">
-                <span>Location: </span><span>Yangon</span>
-              </div>
-            </div>
-            <div class="oneroom__vline"></div>
-            <div class="oneroom__info flex">
-              <div class="oneroom__rinfo-status one-info flex">
-                <span>Status: </span><span>Available</span>
-              </div>
-              <div class="oneroom__rinfo-price one-info flex">
-                <span>Price: </span><span>40,000</span>
-              </div>
-              <button class="oneroom__rinfo-btn btn">Check</button>
-            </div>
-          </div>
-        </div>
-      </ng-container>
+    <div class="heading__subtitle">
+      <p>
+        Welcome to a realm of tranquility and elegance, where every room beckons
+        with promise and every moment is filled with warmth.
+      </p>
     </div>
   </div>
-  
-  <app-footer></app-footer>
-  
+
+  <!-- >>>> FILTER (search bar) <<<< -->
+  <form (ngSubmit)="filterRooms()" class="filter-bar flex">
+    <!-- dropdowns -->
+    <div class="dropdowns-containers flex">
+      <!-- min - max price -->
+      <div class="mimx-price-wrapper input-box flex">
+        <input
+          [(ngModel)]="params.minPrice"
+          type="number"
+          placeholder="Min price"
+          name="minprice"
+        />
+        <span>-</span>
+        <input
+          [(ngModel)]="params.maxPrice"
+          type="number"
+          placeholder="Max price"
+          name="maxprice"
+        />
+      </div>
+    </div>
+
+    <div class="dropdowns-containers flex">
+      <!-- room type -->
+      <select [(ngModel)]="params.roomType" name="type">
+        <option value="">Type</option>
+        <option value="Suite">Suite</option>
+        <option value="Superior">Superior</option>
+        <option value="Deluxe">Deluxe</option>
+        <option value="Standard">Standard</option>
+      </select>
+      <!-- sort order -->
+      <select [(ngModel)]="params.sortOrder" name="sortOrder">
+        <option value="asc">Sort Order</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+
+    <!-- buttons -->
+    <div class="filter-btn-container flex">
+      <button class="reset-btn btn" type="reset">Clear</button>
+      <button type="submit" class="filter-btn btn flex" (click)="resetPage()">
+        Filter
+        <i class="bx bx-filter-alt"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Display room cards -->
+  <div class="cards-wrapper">
+    <ng-container *ngIf="isFetching; else displayRooms">
+      <ngx-skeleton-loader
+        animation="pulse"
+        count="1"
+        [theme]="{
+          'width': '350px',
+          'height': '400px',
+          'background-color': '#fff',
+          'border-radius': '10px',
+        }"
+      ></ngx-skeleton-loader>
+    </ng-container>
+    <ng-template #displayRooms>
+      <div *ngFor="let room of allRooms" class="room-card flex">
+        <div class="img-container">
+          <img class="room-img" src="{{ room.images![0] }}" alt="hotel room image" />
+          <span class="room-number">RoomNo. {{ room.room_number! }}</span>
+        </div>
+        <div class="room-info">
+          <span class="room-type">
+            <i class="bx bx-building-house"></i>
+            {{ room.room_type! }}
+          </span>
+          <span class="room-price">
+            <i class="bx bx-money"></i>
+            {{ room.price }}
+          </span>
+          <span class="room-status" [ngStyle]="{
+            color: room.status === 'Available' ? '#a3e635' : '#ef4444'
+          }">
+            {{ room.status! }}
+          </span>
+          <span class="room-desc">
+            {{ room.description! }}
+          </span>
+        </div>
+        <button class="btn flex" (click)="goToRoomDetails(room.id!)">
+          Details
+          <i class='bx bxs-chevron-right'></i>
+        </button>
+      </div>
+    </ng-template>
+
+    <!-- pagination container -->
+  </div>
+  <div class="pagination flex">
+    <button
+      class="arrow-btn btn"
+      [disabled]="currentPage === 1"
+      (click)="onPageChange(currentPage - 1)"
+    >
+      &lt;
+    </button>
+    <span> page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="arrow-btn btn"
+      [disabled]="currentPage === totalPages"
+      (click)="onPageChange(currentPage + 1)"
+    >
+      &gt;
+    </button>
+  </div>
+</div>
+
+<app-footer></app-footer>

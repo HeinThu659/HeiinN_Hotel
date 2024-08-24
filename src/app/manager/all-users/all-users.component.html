@@ -1,0 +1,163 @@
+<div class="container">
+    <!-- All Users section -->
+    <section class="all-users-container">
+      <!-- Heading -->
+      <h1>Manage Users</h1>
+  
+      <!-- Filter/ Search Bar -->
+      <form (ngSubmit)="filterUsers()" class="search-bar flex">
+        <div class="name-search-container flex">
+          <input
+            type="text"
+            class="name-search"
+            [(ngModel)]="params.name"
+            name="name"
+            placeholder="Search by name"
+          />
+          <button class="reset-btn" type="reset">x</button>
+          <button type="submit" class="search-btn btn flex" (click)="resetPage()">
+            Search
+            <i class="bx bx-search-alt"></i>
+          </button>
+        </div>
+        <div class="dropdowns-container flex">
+          <select [(ngModel)]="params.filterByRole" name="role">
+            <option value="">Role</option>
+            <option value="0">Guest</option>
+            <option value="2">Reception</option>
+            <option value="3">Housekeeper</option>
+            <option value="4">Server</option>
+          </select>
+          <select [(ngModel)]="params.sortOrder" name="order">
+            <option value="">Order</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+          <select [(ngModel)]="params.sortBy" name="date">
+            <option value="">Date</option>
+            <option value="createdAt">CreatedAt</option>
+          </select>
+        </div>
+      </form>
+  
+      <!-- Display User cards -->
+      <ng-container *ngIf="isFetching; else displayCards">
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{
+            width: '100%',
+            'max-width': '400px',
+            height: '200px',
+            'background-color': '#0000006c'
+          }"
+        >
+        </ngx-skeleton-loader>
+      </ng-container>
+      <ng-template #displayCards>
+        <div class="desktop-view">
+          <div
+            class="user-card flex"
+            *ngFor="let user of allUsers"
+            [ngStyle]="{ display: user.role === 1 ? 'none' : 'flex' }"
+          >
+            <ng-container *ngIf="user.role != 1">
+              <div class="user-info">
+                <table>
+                  <tr>
+                    <th colspan="2">
+                      <p>{{ user.name }}</p>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td class="icons"><i class="bx bxs-user-badge"></i></td>
+                    <td>
+                      <p>{{ getRoleText(user.role!) }}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="icons"><i class="bx bxs-envelope"></i></td>
+                    <td>
+                      <p>{{ user.email }}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="icons"><i class="bx bxs-phone"></i></td>
+                    <td>
+                      <p>{{ user.phone }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <button
+                class="trash-btn"
+                (click)="showUserId(user.id!, user.name!)"
+                onclick="confirmDel.showModal()"
+              >
+                <i class="bx bxs-trash"></i>
+              </button>
+            </ng-container>
+            <img
+              *ngIf="user.role != 1"
+              class="left-corner"
+              src="../../assets/images/about/team/corner.svg"
+              alt="corner art"
+            />
+            <img
+              *ngIf="user.role != 1"
+              class="right-corner"
+              src="../../assets/images/about/team/corner.svg"
+              alt="corner art"
+            />
+          </div>
+        </div>
+      </ng-template>
+  
+      <!-- Dialog to confirm the user delete -->
+      <dialog id="confirmDel">
+        <div class="del-box flex">
+          <h1 class="flex">
+            <span>Warning</span>
+            <i class="bx bx-error-alt"></i>
+          </h1>
+          <p>
+            Are you sure you want to delete this user,
+            <span class="to-be-deleted-name">{{ user2BeDeletedName }}</span> ?
+            <br />
+            This action cannot be reversible!
+          </p>
+          <div class="btn-wrapper flex">
+            <button class="btn cancel-btn" onclick="confirmDel.close()">
+              Cancel
+            </button>
+            <button
+              class="btn confirm-btn"
+              (click)="deleteUserById(user2BeDeletedId)"
+              onclick="confirmDel.close()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </dialog>
+  
+      <!-- pagination container -->
+      <div class="pagination flex">
+        <button
+          class="arrow-btn btn"
+          [disabled]="currentPage === 1"
+          (click)="onPageChange(currentPage - 1)"
+        >
+          &lt;
+        </button>
+        <span> page {{ currentPage }} of {{ totalPages }}</span>
+        <button
+          class="arrow-btn btn"
+          [disabled]="currentPage === totalPages"
+          (click)="onPageChange(currentPage + 1)"
+        >
+          &gt;
+        </button>
+      </div>
+    </section>
+  </div>
+  

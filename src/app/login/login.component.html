@@ -5,14 +5,20 @@
 <div class="blur"></div>
 
 <div class="dummy-body flex">
+  <!-- Error Message if there's any -->
+   <div *ngIf="isLoginError" class="error-msg bx-flashing">
+      <p>{{ errorMessage }}</p>
+   </div>
+
   <!-- FORM SECTION  -->
   <div class="form-wrapper flex">
     <h1>Login</h1>
     <div class="form-img-container flex">
-      <form (ngSubmit)="register()" #loginForm="ngForm" class="flex">
+      <form (ngSubmit)="login()" #loginForm="ngForm" class="flex">
         <!-- EMAIL FIELD -->
         <div class="input-box">
           <input
+            [disabled]="onSubmit"
             type="email"
             name="email"
             id="email"
@@ -21,12 +27,24 @@
             required
             minlength="4"
             #mail="ngModel"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
           />
-          <i class="bx bxs-envelope"></i>
+          <i [ngClass]="{
+            'green-icon' : onSubmit || isFieldValid(mail),
+            'red-icon' : !onSubmit && isFieldInvalid(mail)
+          }" class="bx bxs-envelope"></i>
+          <!-- input error message -->
+          <p
+            class="text-red-bold"
+            *ngIf="mail.errors && mail.touched && mail.dirty"
+          >
+            invalid email
+          </p>
         </div>
         <!-- PASSWORD FIELD -->
         <div class="input-box">
           <input
+            [disabled]="onSubmit"
             type="password"
             name="password"
             id="password"
@@ -36,17 +54,34 @@
             minlength="8"
             #pass="ngModel"
           />
-          <i class="bx bxs-lock-alt"></i>
+          <i [ngClass]="{
+            'green-icon': onSubmit || isFieldValid(pass),
+            'red-icon': !onSubmit && isFieldInvalid(pass)
+          }" class="bx bxs-lock-alt"></i>
+          <!-- input error message -->
+          <p
+            class="text-red-bold"
+            *ngIf="pass.errors && pass.touched && pass.dirty"
+          >
+            at least 8 characters
+          </p>
         </div>
 
         <!-- <button type="submit" id="register" [disabled]="!agree.checked" class="btn">Register</button> -->
-        <button type="submit" id="login" class="btn">Login</button>
-        
+        <!-- <button type="submit" [disabled]="loginForm.invalid || onSubmit" id="login" class="btn">Login</button> -->
+        <button class="btn flex" [disabled]="loginForm.invalid || onSubmit">
+          <ng-container *ngIf="onSubmit === false; else submittingEmail">
+            Login 
+          </ng-container>
+          <ng-template #submittingEmail>
+              <i class="bx bx-loader-circle bx-spin"></i>
+          </ng-template>
+        </button>
   
         <div class="register-link">
           <p>
             Haven't registered?
-            <a routerLink="/register">Register</a>
+            <a appLoadingNavigate="/register">Register</a>
             here!
           </p>
         </div>
@@ -59,7 +94,7 @@
           class=""
           alt="hotel logo"
         />
-        <p>HeiinN Hotel</p>
+        <p>EMBER GLOW</p>
       </div>
     </div>
   </div>

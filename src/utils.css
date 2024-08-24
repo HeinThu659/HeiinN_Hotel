@@ -66,6 +66,15 @@
         0 0 120px -10px var(--clr-gold);
 }
 
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+    box-shadow: none;
+}
+.btn:disabled:hover {
+    transform: translateY(0);
+}
+
 .flex {
     display: flex;
     justify-content: center;
@@ -84,7 +93,34 @@
     margin-top: 1.5rem;
 }
 
+/* Form validations */
+/* Alert/ Error message */
+.text-green-bold {
+    color: #a3e635;
+    font-weight: bold;
+}
+.text-red-bold {
+    color: #ef4444;
+    font-weight: bold;
+}
+.green-icon {
+    color: #a3e635;
+}
+.red-icon {
+    color: #ef4444;
+}
 
+/* remove arrows/spinners from input box */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 /* some animations for the menus */
 @keyframes pop {

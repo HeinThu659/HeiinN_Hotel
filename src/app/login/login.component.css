@@ -33,6 +33,17 @@
     height: 100vh;
 }
 
+/* Error msg if there's any */
+.error-msg {
+    border-radius: .6rem;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ef4444;
+    padding: .5rem 1rem;
+}
+
 /* FORM WRAPPER */
 .form-wrapper {
     flex-direction: column;
@@ -41,6 +52,7 @@
     border: 1px solid rgba(255, 255, 255, 0.274);
     border-radius: 20px;
     width: 300px;
+    height: 316px;
     padding: 20px 0;
     margin: 3rem 20px 0;
 }
@@ -71,7 +83,7 @@
 .form-img-container .input-box input {
     background-color: transparent;
     color: var(--clr-amber50);
-    padding-left: 1rem;
+    padding: 0 1.8rem 0 1rem;
     border-radius: 10px;
     width: 100%;
     height: 100%;

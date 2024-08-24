@@ -1,0 +1,231 @@
+.room-container {
+    padding-top: 100px;
+    color: var(--clr-dark);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Room Card */
+.room-card {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    margin: 0 auto 1rem;
+    font-size: var(--size-lg);
+    border-collapse: collapse;
+}
+
+.room-id,
+.payment-proof,
+.room-desc-label {
+    text-align: center;
+}
+
+td {
+    border: 1px solid #0000001c;
+    width: 50%;
+    padding: 1rem;
+}
+
+.room-desc,
+.room-desc-label {
+    padding: .4rem 1rem;
+}
+
+/* font-size for all inputs */
+input,
+textarea {
+    font-size: var(--size-lg);
+}
+
+.room-no-input,
+.room-price-input,
+.room-floor-input,
+.room-capacity-input {
+    width: 9.5rem;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    resize: none;
+}
+
+textarea:disabled {
+    background-color: transparent;
+}
+
+.img-row-wrapper {
+    position: relative;
+}
+
+.imgs-row {
+    overflow-x: auto;
+    white-space: nowrap;
+    /* Prevent line breaks to keep images in one line */
+    padding-top: 1.8rem;
+}
+
+/* Img upload tip */
+.upload-tip {
+    color: #ef7a44;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--size-sm);
+}
+
+.img-wrapper {
+    display: inline-block;
+    /* Inline-block to allow horizontal scrolling */
+    position: relative;
+}
+
+.room-imgs {
+    display: inline-block;
+    /* Display images inline-block for horizontal alignment */
+    width: 100px;
+    margin-right: 2rem;
+}
+
+.custom-file-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.custom-file-upload p {
+    background-color: #000000c7;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+}
+
+/* Update mode -> form dropdowns */
+select {
+    font-size: var(--size-lg);
+}
+
+/* Toggle Button */
+.toggle-btn {
+    font-size: var(--size-lg);
+    gap: .3rem;
+}
+
+.toggle-btn i {
+    font-size: var(--size-2xl);
+}
+
+/* Cancel & Save buttons */
+.btn-group {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.cancel-btn,
+.save-btn {
+    font-size: var(--size-lg);
+    padding: .5rem 1rem;
+    border-radius: .6rem;
+    width: 5.68rem;
+}
+
+.cancel-btn {
+    border: 1px solid #00000082;
+}
+
+.save-btn {
+    box-shadow: none;
+}
+
+.save-btn i {
+    font-size: var(--size-2xl);
+}
+
+/* Delete button */
+.btn-group {
+    width: 100%;
+    max-width: 680px;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    width: 119px;
+    box-shadow: none;
+    font-size: var(--size-lg);
+    gap: .3rem;
+}
+
+.delete-btn i {
+    font-size: var(--size-2xl);
+}
+
+/* Delete room confimation popup */
+#popup {
+    background-color: var(--clr-amber100);
+    border-radius: .6rem;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    box-shadow: 10px 10px 10px #00000034;
+    opacity: 0;
+    animation: pop-up ease-out .3s forwards;
+}
+
+#popup::backdrop {
+    background-color: #0000004d;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.warning-text {
+    background-color: #ef4444;
+    font-weight: bold;
+    color: #fff;
+    padding: .6rem;
+    text-align: center;
+}
+
+#popup p {
+    padding: 1rem;
+    font-size: var(--size-lg);
+    font-weight: bold;
+}
+
+.no-delete-btn,
+.yes-delete-btn {
+    width: 100px;
+    font-size: var(--size-lg);
+    box-shadow: none;
+    margin-top: .6rem;
+}
+
+.no-delete-btn {
+    background-color: transparent;
+    border: 1px solid var(--clr-dark);
+}
+
+.yes-delete-btn {
+    color: #fff;
+    background-color: #ef4444;
+    border: 1px solid #ef4444;
+}

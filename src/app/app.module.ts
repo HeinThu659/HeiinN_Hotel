@@ -27,6 +27,19 @@ import { AboutMissionComponent } from './about-mission/about-mission.component';
 import { AboutTeamComponent } from './about-team/about-team.component';
 import { AboutReviewsComponent } from './about-reviews/about-reviews.component';
 import { AboutEcoComponent } from './about-eco/about-eco.component';
+import { LibraryComponent } from './library/library.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoadingDirective } from './loading.directive';
+import { AllBookingsComponent } from './manager/all-bookings/all-bookings.component';
+import { AllRoomsComponent } from './manager/all-rooms/all-rooms.component';
+import { AllUsersComponent } from './manager/all-users/all-users.component';
+import { CreateRoomComponent } from './manager/create-room/create-room.component';
+import { UpdateBookingComponent } from './manager/update-booking/update-booking.component';
+import { UpdateRoomComponent } from './manager/update-room/update-room.component';
+import { PaymentComponent } from './rooms/payment/payment.component';
+import { RoomDetailsComponent } from './rooms/room-details/room-details.component';
+import { BookingsComponent } from './profile/bookings/bookings.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +62,19 @@ import { AboutEcoComponent } from './about-eco/about-eco.component';
     AboutTeamComponent,
     AboutReviewsComponent,
     AboutEcoComponent,
+    LibraryComponent,
+    ProfileComponent,
+    LoadingDirective,
+    AllBookingsComponent,
+    AllRoomsComponent,
+    AllUsersComponent,
+    CreateRoomComponent,
+    UpdateBookingComponent,
+    UpdateRoomComponent,
+    PaymentComponent,
+    RoomDetailsComponent,
+    BookingsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

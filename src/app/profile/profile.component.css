@@ -1,0 +1,281 @@
+.profile-container {
+    padding: 70px .5rem 100px;
+    color: var(--clr-amber50);
+}
+
+.profile-wrapper {
+    border-radius: 10px;
+    background-color: rgba(27, 27, 27, 0.397);
+    margin-top: 1rem;
+    padding: 1rem 0 .8rem 0;
+}
+
+h1 {
+    margin: -1rem 0;
+}
+
+.info-wrapper {
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.role-text {
+    margin: 0 .5rem;
+}
+
+.flower {
+    width: 90px;
+}
+
+.upload-wrapper {
+    flex-direction: column;
+}
+
+.pfp {
+    width: 250px;
+    border: 5px solid var(--clr-gold);
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1;
+}
+
+/* profile pic upload */
+.profile-upload-form {
+    margin-top: .5rem;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.profile-upload-form button {
+    padding: .2rem 1rem;
+    font-size: var(--size-3xl);
+}
+
+input[type="file"] {
+    width: 200px;
+}
+
+input[type="file"]::file-selector-button {
+    font-family: 'Chillax', sans-serif;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    padding: .5rem;
+    border: 2px solid var(--clr-gold);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* tooltip for pfp size limit */
+.tooltip-wrapper {
+    /* border: 1px solid green; */
+    position: absolute;
+    top: .55rem;
+    right: 4.6rem;
+}
+
+.tooltip-wrapper span {
+    background-color: var(--clr-dark);
+    border-radius: 5px;
+    font-size: var(--size-sm);
+    font-weight: lighter;
+    width: 95px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.822);
+    padding: .2rem;
+    position: absolute;
+    top: -2rem;
+    right: 0;
+    opacity: 0;
+}
+
+.tooltip:hover+span {
+    opacity: 1;
+}
+
+/* Forms' wrapper */
+.update-form-wrapper {
+    flex-direction: column;
+    position: relative;
+}
+
+.info {
+    margin-top: 1.2rem;
+    height: 100px;
+}
+
+.info td {
+    word-break: break-word;
+    /* This will allow the text to break and wrap to the next line */
+    white-space: normal;
+    /* This ensures that text wraps normally */
+    max-width: 200px;
+}
+
+td {
+    vertical-align: top;
+    padding-left: .7rem;
+}
+
+/* Skeleton loader */
+/* ngx-skeleton-loader {
+    background-color: #0000006c;
+} */
+
+/* UPDATE USER INFO (name, address, phone) */
+.edit-info-form {
+    flex-direction: column;
+}
+
+.input-box input {
+    border: 1px solid rgba(255, 255, 255, 0.479);
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--clr-amber50);
+    border-radius: 10px;
+    padding: .3rem .6rem;
+    width: 100%;
+    height: 100%;
+    font-size: var(--size-base);
+}
+
+.input-box input:disabled {
+    opacity: .6;
+}
+
+.input-box input:focus {
+    background-color: rgba(0, 0, 0, 0.11);
+}
+
+/* ERROR MESSAGE FOR INFO UPDATE */
+.error-message {
+    color: #fa2828;
+    font-size: var(--size-sm);
+}
+
+/* BUTTONS (SAVE, UPDATE, CANCEL) */
+.toggle-btn {
+    margin-top: 1rem;
+}
+.save-btn {
+    margin: 1rem -30% 0 0;
+    box-shadow: none;
+    padding: .5rem 1.2rem;
+}
+.cancel-btn {
+    background-color: transparent;
+    border: 1px solid #fa3e25;
+    color: #fa2828;
+    box-shadow: none;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+}
+
+/* GET ALL USERS SECTION */
+.all-users-wrapper {
+    margin: 2rem 0;
+}
+.get-all-btn {
+    width: 100%;
+    margin: 1rem 0 .5rem;
+    padding: .7rem;
+    gap: .3rem;
+    font-size: var(--size-lg);
+    box-shadow: none;
+}
+.get-all-btn i {
+    font-size: var(--size-xl);
+}
+
+/* Other settings heading */
+.manager-settings-h3, h3.other-settings {
+    font-size: var(--size-2xl);
+    color: var(--clr-dark);
+    margin: 2rem auto 1rem;
+}
+
+/* UPDATE PASSWORD SETTING */
+.update-psw-wrapper {
+    color: var(--clr-dark);
+    
+}
+.psw-update-form {
+    background-color: rgba(27, 27, 27, 0.397);
+    padding: 1rem;
+    border-radius: .6rem;
+}
+.psw-update-form .input-box input{
+    height: 40px;
+    margin: .3rem 0;
+}
+.psw-update-form .input-box input::placeholder {
+    color: var(--clr-amber50);
+}
+.save-psw-btn {
+    width: 8rem;
+}
+.save-psw-btn i {
+    font-size: var(--size-2xl);
+}
+
+/* Get My Bookings */
+.get-bookings-btn {
+    font-size: var(--size-xl);
+    display: block;
+    margin: 1rem auto;
+}
+
+/* xs */
+/* @media (min-width: 475px) {
+} */
+/* sm */
+@media (min-width: 640px) {
+    .profile-container {
+        max-width: 640px;
+    }
+
+    .info-wrapper {
+        flex-direction: row;
+    }
+
+    .upload-wrapper {
+        flex-direction: column;
+    }
+
+    .pfp {
+        width: 200px;
+    }
+
+    /* Forms' wrapper */
+
+    .info {
+        /* border: 1px solid red; */
+        margin: -.5rem 0 0 1rem;
+        width: 280px;
+    }
+
+    .tooltip-wrapper {
+        /* border: 1px solid green; */
+        position: absolute;
+        top: .55rem;
+        right: 4.15rem;
+    }
+
+    /* buttons */
+    .save-btn, .cancel-btn {
+        margin-left: 1rem;
+    }
+}
+
+/* md */
+/* @media (min-width: 768px) {
+} */
+/* lg */
+/* @media (min-width: 1024px) {
+} */
+/* xl */
+/* @media (min-width: 1280px) {
+} */
+/* 2xl */
+/* @media (min-width: 1536px) {
+} */

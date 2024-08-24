@@ -1,0 +1,348 @@
+.all-users-container {
+    color: var(--clr-dark);
+    padding-top: 100px;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.all-users-container h1 {
+    font-size: var(--size-3xl);
+    margin-bottom: 1.7rem;
+    text-align: center;
+}
+
+/* Display User cards */
+/* Loading animation while fetching users */
+.ngx-container {
+    flex-direction: column;
+}
+
+/* User Card Design */
+.user-card {
+    background-color: rgba(27, 27, 27, 0.589);
+    font-weight: bold;
+    font-size: var(--size-lg);
+    color: #fff;
+    border-radius: 10px;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem;
+    /* position for logo */
+    position: relative;
+    scale: .9; opacity: 0;
+    animation: fade-in linear forwards;
+    animation-timeline: view();
+    animation-range: 100px 300px;
+}
+
+.user-card:hover {
+    transform: translateY(-6px);
+    background-color: rgba(27, 27, 27, 0.882);
+    ;
+
+    th {
+        color: var(--clr-gold);
+    }
+
+    td {
+        color: var(--clr-amber100);
+    }
+
+    .left-corner,
+    .right-corner {
+        opacity: 1;
+    }
+}
+
+.user-info {
+    word-break: break-word;
+    white-space: normal;
+    width: 270px;
+}
+
+th {
+    font-size: var(--size-2xl);
+    padding-bottom: .5rem;
+    color: var(--clr-amber100);
+}
+
+th,
+td {
+    text-align: left;
+    vertical-align: top;
+}
+
+.icons {
+    padding-right: .5rem;
+    padding-bottom: .4rem;
+    min-height: 30px;
+}
+
+.icons i {
+    margin-top: .2rem;
+}
+
+.trash-btn {
+    font-size: var(--size-2xl);
+    transition: color .1s;
+}
+
+.trash-btn:hover {
+    color: #fa3e25;
+}
+
+/* Corner arts appear on Hover */
+.left-corner,
+.right-corner {
+    opacity: 0;
+    position: absolute;
+    width: 40px;
+}
+
+.left-corner {
+    transform: rotate(180deg);
+    top: 4px;
+    right: 1%;
+}
+
+.right-corner {
+    bottom: 4px;
+    left: 1%;
+}
+
+
+/* Dialog for confirmation */
+dialog {
+    background-color: transparent;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-content: center;
+}
+
+dialog[open] {
+    display: block;
+}
+
+dialog[open]::backdrop {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: #0000006a;
+}
+
+/* dialog styles */
+.del-box {
+    background-color: #fef3c7;
+    border-radius: 10px;
+    width: 300px;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.del-box h1 {
+    width: 100%;
+    height: 50px;
+    background-color: #fa3e25ef;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+}
+
+.del-box h1 i {
+    margin-top: .2rem;
+}
+
+.del-box p {
+    font-weight: bold;
+    padding: 0 .7rem;
+}
+
+.to-be-deleted-name {
+    color: #fa3e25;
+    font-size: var(--size-xl);
+}
+
+.btn-wrapper {
+    margin-block: 1rem;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    border: 1px solid var(--clr-dark);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.confirm-btn {
+    background-color: #fa3e25;
+    border: 1px solid #fa3e25;
+    color: #fff;
+    box-shadow: none;
+}
+
+/* Filter/ Search Bar */
+.search-bar {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 768px;
+}
+
+/* Name search bar */
+.name-search-container {
+    gap: .5rem;
+    position: relative;
+}
+
+.name-search-container input {
+    background-color: #fff;
+    color: var(--clr-dark);
+    padding-left: 1rem;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: var(--size-base);
+    font-weight: bold;
+}
+
+.name-search-container input:focus {
+    background-color: #f0f0f0;
+}
+
+.name-search-container input:focus+.reset-btn {
+    opacity: 1;
+}
+
+.search-btn {
+    font-size: var(--size-base);
+    box-shadow: none;
+    gap: .2rem;
+}
+
+.search-btn i {
+    font-size: var(--size-xl);
+}
+
+/* reset button to clear filters and name */
+.reset-btn {
+    position: absolute;
+    top: 20%;
+    right: 40%;
+    opacity: 0;
+    font-size: var(--size-xl);
+    font-weight: bold;
+}
+
+/* Dropdown selectors */
+.dropdowns-container {
+    width: 100%;
+    gap: .5rem
+}
+
+.dropdowns-container select {
+    border-radius: 10px;
+    flex: 1;
+    height: 40px;
+    font-size: var(--size-sm);
+    font-weight: bold;
+    color: var(--clr-dark);
+}
+
+/* Page navigation controller arrow buttons */
+.pagination {
+    gap: 1rem;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.pagination .arrow-btn {
+    font-size: var(--size-2xl);
+    box-shadow: none;
+}
+
+
+/* RESPONSIVE */
+/* xs */
+/* @media (min-width: 475px) {
+} */
+/* sm */
+/* @media (min-width: 640px) {
+} */
+/* md */
+@media (min-width: 768px) {
+    .all-users-container {
+        max-width: unset;
+    }
+
+    .desktop-view {
+        width: 100%;
+        max-width: 768px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+    }
+
+    /* search bar */
+    .name-search-container input {
+        background-color: #fff;
+        color: var(--clr-dark);
+        padding-left: 1rem;
+        border-radius: 10px;
+        width: 280px;
+        height: 40px;
+        font-size: var(--size-lg);
+        font-weight: bold;
+    }
+
+    .name-search-container input:focus {
+        background-color: #dfdfdf;
+    }
+
+    .search-btn {
+        font-size: var(--size-lg);
+        box-shadow: none;
+    }
+
+    /* reset button to clear filters and name */
+    .reset-btn {
+        right: 34%;
+    }
+
+    /* Dropdown selectors */
+    .dropdowns-container {
+        width: 100%;
+        gap: .5rem
+    }
+
+    .dropdowns-container select {
+        border-radius: 10px;
+        flex: 1;
+        height: 40px;
+        font-size: var(--size-base);
+        font-weight: bold;
+        color: var(--clr-dark);
+    }
+}
+
+/* lg */
+/* @media (min-width: 1024px) {
+} */
+/* xl */
+@media (min-width: 1280px) {
+    .desktop-view {
+        max-width: 1280px;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+    }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+    .desktop-view {
+        max-width: 1536px;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+}

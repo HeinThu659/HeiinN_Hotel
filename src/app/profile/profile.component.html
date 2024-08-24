@@ -1,0 +1,341 @@
+<section class="profile-container container">
+    <!-- Profile card -->
+    <div class="profile-wrapper">
+      <h1 class="flex">
+        <img
+          class="flower"
+          src="../../assets/images/about/testimonial/left-flower.svg"
+          alt=""
+        />
+        <span class="role-text">{{ roleText }}</span>
+        <img
+          class="flower"
+          src="../../assets/images/about/testimonial/right-flower.svg"
+          alt=""
+        />
+      </h1>
+      <div class="info-wrapper flex">
+        <div class="upload-wrapper flex">
+          <!-- Update User Profile Pic -->
+          <ng-container *ngIf="isLoading; else pfpField">
+            <ngx-skeleton-loader
+              count="1"
+              appearance="circle"
+              [theme]="{
+                margin: '0 0 0 .7rem',
+                border: '5px solid var(--clr-gold)',
+                width: '250px',
+                height: '250px',
+                'background-color': '#0000006c'
+              }"
+            ></ngx-skeleton-loader>
+          </ng-container>
+          <ng-template #pfpField>
+            <img class="pfp" [src]="profilePicture" alt="" />
+          </ng-template>
+  
+          <form
+            class="profile-upload-form flex"
+            (ngSubmit)="uploadProfilePicture()"
+            enctype="multipart/form-data"
+          >
+            <input
+              #fileInput
+              (change)="onFileChange($event)"
+              type="file"
+              (change)="onFileChange($event)"
+            />
+            <button
+              class="btn"
+              type="submit"
+              [disabled]="
+                !fileInput.files ||
+                fileInput.files.length === 0 ||
+                isLoadingUpload
+              "
+            >
+              <i
+                class="bx"
+                [ngClass]="{
+                  'bx-cloud-upload': !isLoadingUpload,
+                  'bx-loader-circle bx-spin': isLoadingUpload
+                }"
+              >
+              </i>
+            </button>
+            <div class="tooltip-wrapper">
+              <i class="bx bx-info-circle tooltip"></i>
+              <span>limit < 1MB</span>
+            </div>
+          </form>
+        </div>
+  
+        <!-- Update User Info Form -->
+        <div class="update-form-wrapper flex">
+          <!-- Update form -->
+          <form
+            class="edit-info-form flex"
+            #editForm="ngForm"
+            (ngSubmit)="saveUserInfo()"
+            *ngIf="isEditMode"
+          >
+            <table class="info">
+              <tr>
+                <td>Name</td>
+                <td class="input-box">
+                  <input
+                    [(ngModel)]="userData!.data!.name"
+                    name="name"
+                    required
+                    minlength="5"
+                    #name="ngModel"
+                  />
+                  <div *ngIf="name.invalid && name.touched" class="error-message">
+                    at least 5 characters.
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td class="input-box">
+                  <input
+                    disabled
+                    [(ngModel)]="userData!.data!.email"
+                    name="email"
+                  />
+                </td>
+              </tr>
+              <tr *ngIf="roleText != 'Guest'">
+                <td>Address</td>
+                <td class="input-box">
+                  <input
+                    [(ngModel)]="userData!.data!.address"
+                    name="address"
+                    minlength="15"
+                    #address="ngModel"
+                  />
+                  <div
+                    *ngIf="address.invalid && address.touched"
+                    class="error-message"
+                  >
+                    at least 15 characters long.
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td class="input-box">
+                  <input
+                    [(ngModel)]="userData!.data!.phone"
+                    type="number"
+                    name="phone"
+                    (input)="onPhoneChange($event)"
+                    required
+                    min="0"
+                    #phone="ngModel"
+                  />
+                  <div
+                    *ngIf="!isPhoneValid && phone.touched"
+                    class="error-message"
+                  >
+                    Phone is required.
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <button
+              class="btn save-btn"
+              [disabled]="editForm.invalid || !isPhoneValid"
+            >
+              Save
+            </button>
+          </form>
+  
+          <!-- Displayed Form -->
+          <table class="info non-edit-info" *ngIf="!isEditMode">
+            <tr>
+              <td>Name</td>
+              <ng-container *ngIf="isLoading; else nameField">
+                <ngx-skeleton-loader
+                  count="1"
+                  appearance="line"
+                  [theme]="{
+                    'border-radius': '5px',
+                    margin: '0 0 0 .7rem',
+                    width: '170px',
+                    height: '30px',
+                    'background-color': '#0000006c'
+                  }"
+                ></ngx-skeleton-loader>
+              </ng-container>
+              <ng-template #nameField>
+                <td>{{ userData?.data?.name }}</td>
+              </ng-template>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <ng-container *ngIf="isLoading; else emailField">
+                <ngx-skeleton-loader
+                  count="1"
+                  appearance="line"
+                  [theme]="{
+                    'border-radius': '5px',
+                    margin: '0 0 0 .7rem',
+                    width: '170px',
+                    height: '30px',
+                    'background-color': '#0000006c'
+                  }"
+                ></ngx-skeleton-loader>
+              </ng-container>
+              <ng-template #emailField>
+                <td>{{ userData?.data?.email }}</td>
+              </ng-template>
+            </tr>
+            <tr *ngIf="roleText != 'Guest'">
+              <td>Address</td>
+              <ng-container *ngIf="isLoading; else addrField">
+                <ngx-skeleton-loader
+                  count="1"
+                  appearance="line"
+                  [theme]="{
+                    'border-radius': '5px',
+                    margin: '0 0 0 .7rem',
+                    width: '170px',
+                    height: '30px',
+                    'background-color': '#0000006c'
+                  }"
+                ></ngx-skeleton-loader>
+              </ng-container>
+              <ng-template #addrField>
+                <td>{{ userData?.data?.address }}</td>
+              </ng-template>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <ng-container *ngIf="isLoading; else phField">
+                <ngx-skeleton-loader
+                  count="1"
+                  appearance="line"
+                  [theme]="{
+                    'border-radius': '5px',
+                    margin: '0 0 0 .7rem',
+                    width: '170px',
+                    height: '30px',
+                    'background-color': '#0000006c'
+                  }"
+                ></ngx-skeleton-loader>
+              </ng-container>
+              <ng-template #phField>
+                <td>{{ userData?.data?.phone }}</td>
+              </ng-template>
+            </tr>
+          </table>
+          <button
+            *ngIf="!isEditMode"
+            class="btn toggle-btn"
+            (click)="toggleEditMode()"
+            [disabled]="isLoading"
+          >
+            Update
+          </button>
+          <button
+            *ngIf="isEditMode"
+            class="btn toggle-btn cancel-btn"
+            (click)="toggleEditMode(); fetchUserData()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Get My Bookings for Guest/ All Bookings for Manager -->
+    <button
+      [appLoadingNavigate]="roleText === 'Guest' ? '/mybookings' : '/all-bookings'"
+      [disabled]="isLoading"
+      class="btn get-bookings-btn"
+    >
+      {{ roleText === "Guest" ? "My Bookings" : "Manage Bookings" }}
+    </button>
+  
+    <!-- Get all users button/ link for Manager Role -->
+    <div *ngIf="roleText == 'Manager'" class="all-users-wrapper">
+      <h3 class="manager-settings-h3">Manager Previlege</h3>
+      <button class="btn get-all-btn flex" appLoadingNavigate="/all-users">
+        View All Users <i class="bx bx-group"></i>
+      </button>
+      <button class="btn get-all-btn flex" appLoadingNavigate="/all-rooms">
+        Manage All Rooms <i class="bx bx-building-house"></i>
+      </button>
+      <button class="btn get-all-btn flex" appLoadingNavigate="/create-room">
+        Create New Room <i class="bx bx-plus-circle"></i>
+      </button>
+    </div>
+  
+    <!-- Change password -->
+    <h3 class="other-settings">Other Settings</h3>
+    <div class="update-psw-wrapper">
+      <form
+        class="psw-update-form"
+        #updatePswForm="ngForm"
+        (ngSubmit)="changePassword()"
+      >
+        <div class="input-box">
+          <input
+            [(ngModel)]="oldPassword"
+            name="oldPassword"
+            type="password"
+            placeholder="Old Password"
+            required
+            minlength="8"
+            #oldPsw="ngModel"
+          />
+          <!-- error message -->
+          <p class="text-red-bold" *ngIf="!oldPsw.valid && oldPsw.touched">
+            at least 8 characters
+          </p>
+        </div>
+        <div class="input-box">
+          <input
+            [(ngModel)]="newPassword"
+            name="newPassword"
+            type="password"
+            placeholder="New Password"
+            (input)="onPasswordChange()"
+            required
+            #newPsw="ngModel"
+            #passwordField
+          />
+          <!-- error message -->
+          <p class="text-red-bold" *ngIf="!newPsw.valid && newPsw.touched">
+            at least 8 characters
+          </p>
+        </div>
+        <div class="input-box">
+          <input
+            [(ngModel)]="confirmNewPassword"
+            name="confirmNewPassword"
+            type="password"
+            placeholder="Confirm New Password"
+            (input)="onConfirmPasswordChange()"
+            required
+            #cNewPsw="ngModel"
+            #confirmPasswordField
+          />
+          <!-- error message -->
+          <p class="text-red-bold" *ngIf="!passwordsMatch && cNewPsw.touched">
+            passwords must match
+          </p>
+        </div>
+  
+        <button
+          class="btn save-psw-btn flex"
+          [disabled]="updatePswForm.invalid || !passwordsMatch || pswLoading"
+        >
+          <i *ngIf="pswLoading" class="bx bx-loader-circle bx-spin"></i>
+          <span *ngIf="!pswLoading">Save Password</span>
+        </button>
+      </form>
+    </div>
+  </section>
+  

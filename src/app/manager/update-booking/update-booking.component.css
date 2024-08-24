@@ -1,0 +1,92 @@
+.booking-container {
+    padding-top: 100px;
+    color: var(--clr-dark);
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.booking-card {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    margin: 0 auto 1rem;
+    padding: 1rem;
+    font-size: var(--size-lg);
+    border-collapse: collapse;
+}
+.booking-card > tr {
+    height: 3.5rem;
+}
+.booking-id, .payment-proof {
+    text-align: center;
+}
+/* Payment Proof Button */
+.view-proof-btn {
+    font-size: var(--size-lg);
+    width: 100%;
+    height: 100%;
+}
+.view-proof-btn:disabled {
+    opacity: .5;
+    cursor: default;
+}
+.payment-proof-img {
+    width: 350px;
+    margin: auto;
+    position: relative;
+    box-shadow: 10px 10px 10px #00000052;
+}
+.close-popup-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    border: 1px solid #0000001c;
+    width: 50%;
+    padding-left: .6rem;
+}
+
+/* Update mode -> form dropdowns */
+select {
+    font-size: var(--size-lg);
+}
+
+/* Toggle Button */
+.toggle-btn {
+    margin: 0 auto;
+    font-size: var(--size-lg);
+    gap: .3rem;
+}
+.toggle-btn i {
+    font-size: var(--size-2xl);
+}
+
+/* Cancel & Save buttons */
+.btn-group {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+.cancel-btn, .save-btn {
+    font-size: var(--size-lg);
+    padding: .5rem 1rem;
+    border-radius: .6rem;
+    width: 5.68rem;
+}
+.cancel-btn {
+    border: 1px solid #00000082;
+}
+.save-btn {
+    box-shadow: none;
+}
+.save-btn i {
+    font-size: var(--size-2xl);
+}

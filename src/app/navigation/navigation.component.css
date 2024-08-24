@@ -38,7 +38,7 @@
 }
 
 .left-part__brand-name::after {
-    content: 'Hotel';
+    content: ' Glow';
     position: absolute;
     left: 0;
     opacity: 0;
@@ -79,7 +79,7 @@
     justify-content: center;
     text-align: center;
     height: 100%;
-    flex: 1;
+    /* flex: 1; */
     font-size: var(--size-base);
     position: relative;
 }
@@ -131,6 +131,13 @@
     border: 1px solid #ffd900be;
     border-radius: 12px;
 }
+.right-part .profile-img {
+    width: 40px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 2px solid var(--clr-gold);
+    border-radius: 50%;
+}
 
 .right-part a:hover>i {
     color: #fff;
@@ -155,17 +162,18 @@
 /* MOBILE NAV STARTS HERE */
 
 #mobile_menu {
-    display: flex;
+    display: none;
     background-color: var(--clr-amber100);
     width: 100vw;
     height: 100vh;
     height: 100dvh;
     justify-content: center;
     align-items: center;
+    animation: disappear .5s;
 }
-
-.mobile__close {
-    display: block;
+#mobile_menu[open] {
+    display: flex;
+    animation: appear .5s;
 }
 
 .mobile___nav {
@@ -189,6 +197,38 @@
     padding-left: 3.4rem;
 }
 
+/* LOGOUT BUTTONS */
+/* mobile button */
+.logout-btn {
+    height: 100%;
+    font-weight: 600;
+    font-size: var(--size-xl);
+    color: #fff;
+    background-color: #ef4444;
+    box-shadow: none;
+}
+/* desktop button */
+.desktop-logout {
+    display: none;
+    font-size: var(--size-base);
+    padding: .3rem;
+    border-radius: 5px;
+    transform: translateX(8px);
+}
+.desktop-logout:hover {
+    transform: translateX(0);
+}
+.desktop-logout i {
+    font-size: var(--size-xl);
+    opacity: 0;
+    transform: translate(10px, 3px);
+    transition: all .2s;
+}
+.desktop-logout:hover i{
+    opacity: 1;
+    transform: translate(0, 3px);
+}
+
 .mobile__nav-close {
     font-size: var(--size-3xl);
 }
@@ -209,6 +249,7 @@
     }
 
     .mid-part {
+        width: 50%;
         display: flex;
     }
 
@@ -225,6 +266,11 @@
         display: block;
     }
 
+    /* desktop logout */
+    .desktop-logout {
+        display: block;
+    }
+
     .right-part__menu {
         display: none;
     }
@@ -235,25 +281,26 @@
     .navigation {
         padding: 0 3.6rem;
     }
-
-    .mid-part {
-        flex: none;
-        gap: 0rem;
-    }
-
+    
     .mid-part a {
-        font-size: var(--size-lg);
+        flex: 1;
     }
-
+    
     .right-part span {
         font-size: var(--size-lg);
     }
-
+    
 }
 
 /* xl */
-/* @media (min-width: 1280px) {
-} */
+@media (min-width: 1280px) {
+    .mid-part {
+        width: 45%;
+    }
+    .mid-part a {
+        font-size: var(--size-lg);
+    }
+}
 /* 2xl */
 @media (min-width: 1536px) {
     .left-part {
