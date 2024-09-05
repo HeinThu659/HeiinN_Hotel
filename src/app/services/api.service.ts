@@ -16,7 +16,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
   baseUrl: string = 'https://heiinn-hotel-backend.onrender.com';
-  // baseUrl: string = 'http://localhost:8000';
+  //baseUrl: string = 'http://localhost:8000';
 
   // User related URLs
   registerUrl: string = `${this.baseUrl}/api/v1/auth/register/`;

@@ -32,7 +32,7 @@ export class CreateRoomComponent implements OnInit, OnDestroy {
   isError: boolean = false; // if any error 
   errorMessage: string | null = null; // err msg
   roomStatus: string[] = ['Available', 'Maintenance', 'Unavailable'];
-  roomTypes: string[] = ['Suite', 'Superior', 'Deluxe', 'Standard'];
+  roomTypes: string[] = ['Suite', 'Superior', 'Deluxe', 'Standard','Conference'];
   createSuccess: boolean = false;
 
   // Image upload part

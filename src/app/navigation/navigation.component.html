@@ -1,7 +1,7 @@
 <div class="navigation flex">
   <div class="left-part flex">
     <a appLoadingNavigate="/" class="flex">
-      <span class="left-part__brand-name">Ember</span>
+      <span class="left-part__brand-name">HeiinN</span>
       <img
         class="logo"
         src="../../assets/images/icons/hotel-logo-600.png"
@@ -15,14 +15,14 @@
       class="flex"
     >
       <i class="bx bxs-hotel" style="color: #ffffff"></i>
-      {{ userRole === '0' || userRole === null ? "Rooms" : "All Rooms" }}
+      {{ userRole === '0' || userRole === null ? "Rooms" : "Rooms" }}
     </a>
     <a
       [appLoadingNavigate]="userRole === '0' || userRole === null ? '/dining' : '/all-users'"
       class="flex"
     >
       <i class="bx" [ngClass]=" userRole === '0' || userRole === null ? 'bxs-bowl-hot' : 'bxs-group' " style="color: #ffffff"></i>
-      {{ userRole === '0' || userRole === null ? "Dining" : "All Users" }}
+      {{ userRole === '0' || userRole === null ? "Dining" : "Users" }}
     </a>
     <a
       [appLoadingNavigate]="userRole === '0' || userRole === null ? '/facilities' : '/all-bookings'"
@@ -47,7 +47,7 @@
       Contact
     </a>
     <a
-      *ngIf="userRole === '0' || userRole === null; else toGmail"
+      *ngIf="userRole === '0' || userRole === null"
       appLoadingNavigate="/library"
       class="flex"
     >

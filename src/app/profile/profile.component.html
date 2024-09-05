@@ -291,7 +291,7 @@
             #oldPsw="ngModel"
           />
           <!-- error message -->
-          <p class="text-red-bold" *ngIf="!oldPsw.valid && oldPsw.touched">
+          <p class="text-red-bold" *ngIf="oldPsw.errors && oldPsw.touched && oldPsw.dirty">
             at least 8 characters
           </p>
         </div>
@@ -307,7 +307,7 @@
             #passwordField
           />
           <!-- error message -->
-          <p class="text-red-bold" *ngIf="!newPsw.valid && newPsw.touched">
+          <p class="text-red-bold" *ngIf="newPsw.errors && newPsw.touched && newPsw.dirty">
             at least 8 characters
           </p>
         </div>
@@ -330,7 +330,7 @@
   
         <button
           class="btn save-psw-btn flex"
-          [disabled]="updatePswForm.invalid || !passwordsMatch || pswLoading"
+          [disabled]="updatePswForm.invalid || !passwordsMatch || pswLoading || !oldPsw.valid || !newPsw.valid"
         >
           <i *ngIf="pswLoading" class="bx bx-loader-circle bx-spin"></i>
           <span *ngIf="!pswLoading">Save Password</span>

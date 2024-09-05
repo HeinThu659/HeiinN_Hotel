@@ -56,6 +56,7 @@ export class AllRoomsComponent implements OnInit, OnDestroy {
       this.params = { ...this.params, ...params };
       this.getAllRooms(this.params);
     });
+    console.log("Hello.....",this.params)
     this.checkNotFound();
   }
 
@@ -113,11 +114,14 @@ export class AllRoomsComponent implements OnInit, OnDestroy {
         relativeTo: this.route,
         queryParams: this.params,
         queryParamsHandling: 'merge',
+        
       })
       .then(() => {
         // Fetch rooms with the updated parameters
         this.getAllRooms(this.params);
+        console.log("Hello.....",this.params)
       });
+      
   }
 
   // Go to one room deails page

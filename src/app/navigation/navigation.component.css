@@ -38,7 +38,7 @@
 }
 
 .left-part__brand-name::after {
-    content: ' Glow';
+    content: ' Hotel';
     position: absolute;
     left: 0;
     opacity: 0;

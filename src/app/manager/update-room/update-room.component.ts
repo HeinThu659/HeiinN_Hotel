@@ -27,7 +27,7 @@ export class UpdateRoomComponent implements OnInit, OnDestroy {
   isSaving: boolean = false;
   isDeleting: boolean = false;
   roomStatus: string[] = ['Available', 'Maintenance', 'Unavailable'];
-  roomTypes: string[] = ['Suite', 'Superior', 'Deluxe', 'Standard'];
+  roomTypes: string[] = ['Suite', 'Superior', 'Deluxe', 'Standard','Conference'];
 
   // Image upload part
   tempFiles: File[] = []; // Temporary storage for images

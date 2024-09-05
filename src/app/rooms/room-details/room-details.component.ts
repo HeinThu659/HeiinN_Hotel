@@ -77,6 +77,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   bookedDates: { checkIn: string; checkOut: string }[] = [];
   checkLoggedIn: boolean = true;
   userRole: string | null = '0';
+ 
   // Image showcase
   bigImg: string = '';
   imgArray: OneRoomData['images'] = [];
@@ -159,6 +160,7 @@ export class RoomDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
         this.imgArray = this.oneRoomData.images!;
         this.bigImg = this.imgArray[0];
         this.roomId = this.oneRoomData.id!;
+        
         // Add the selected class to the first image after setting imgArray
         setTimeout(() => {
           this.addInitialSelectedClass();
