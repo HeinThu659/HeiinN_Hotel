@@ -282,18 +282,18 @@
       >
         <div class="input-box">
           <input
-            [(ngModel)]="oldPassword"
-            name="oldPassword"
-            type="password"
-            placeholder="Old Password"
-            required
-            minlength="8"
-            #oldPsw="ngModel"
-          />
-          <!-- error message -->
-          <p class="text-red-bold" *ngIf="oldPsw.errors && oldPsw.touched && oldPsw.dirty">
-            at least 8 characters
-          </p>
+          [(ngModel)]="oldPassword"
+          name="oldPassword"
+          type="password"
+          placeholder="Old Password"
+          required
+          minlength="8"
+          #oldPsw="ngModel"
+        />
+        <!-- error message -->
+        <p class="text-red-bold" *ngIf="!oldPsw.valid && oldPsw.touched">
+          at least 8 characters
+        </p>
         </div>
         <div class="input-box">
           <input
@@ -301,6 +301,7 @@
             name="newPassword"
             type="password"
             placeholder="New Password"
+            minlength="8"
             (input)="onPasswordChange()"
             required
             #newPsw="ngModel"
