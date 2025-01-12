@@ -15,7 +15,7 @@ export class ApiService {
   private countryCodeUrl: string = `${this.baseDataUrl}country-codes.json`;
 
   constructor(private http: HttpClient) {}
-  baseUrl: string = 'https://heiinn-hotel-backend.onrender.com';
+  baseUrl: string = 'https://heiinn-api-service.onrender.com';
   //baseUrl: string = 'http://localhost:8000';
 
   // User related URLs
